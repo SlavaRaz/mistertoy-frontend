@@ -1,0 +1,10 @@
+.toy-filter {
+  background-color: var(--clr2bg);
+  padding: 1em;
+}
+
+.toy-filter form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}

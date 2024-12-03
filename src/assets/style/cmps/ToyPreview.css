@@ -1,0 +1,29 @@
+.toy-preview {
+  padding: 1em;
+  font-size: 1rem;
+}
+
+.toy-preview .toy-name {
+  font-size: 1rem;
+}
+
+.toy-preview img {
+  max-height: 220px;
+}
+
+.skeleton-loader {
+  width: 220px;
+  height: 220px;
+  background: linear-gradient(90deg, #ddd 25%, #eee 50%, #ddd 75%);
+  background-size: 200% 100%;
+  animation: shimmer-loading 1.5s infinite linear;
+}
+
+@keyframes shimmer-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

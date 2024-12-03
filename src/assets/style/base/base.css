@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color: var(--gray3);
+  font-family: roboto, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0.5em 0 0.5em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+/* Dont stretch my Media */
+img,
+embed,
+video,
+object {
+  max-width: 100%;
+}
+
+/* Simple and useful CSS Debugging Technique */
+.debug * {
+  outline: 1px solid gold;
+}
+
+a.active {
+  text-decoration: overline;
+}
+
+.popup-menu {
+  position: fixed;
+  flex-direction: column;
+  padding: 40px;
+  width: 40vw;
+  align-items: center;
+  height: auto;
+  background-color: rgb(248, 250, 247);
+  border: 1px solid #bebebe;
+  box-shadow: 1px 2px 16px #000000a6;
+  display: flex;
+  inset: 0;
+  margin: auto;
+  height: fit-content;
+}
+.popup-menu h1 {
+  font-size: 1.5em;
+}

@@ -1,0 +1,40 @@
+.toy-list {
+  display: flex;
+  justify-content: center;
+}
+
+.toy-list ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 445px;
+  margin-block: 0 0.5em;
+  list-style: none;
+  padding: 0;
+  align-items: start;
+}
+
+.toy-list li {
+  margin: 0.5em;
+  background-color: var(--clr1bg);
+  border-radius: 4px;
+  box-shadow: #00000026 1.95px 1.95px 2.6px;
+}
+
+.btn-container {
+  display: flex;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+@media (min-width: 630px) {
+  .toy-list ul {
+    flex-flow: row wrap;
+  }
+}

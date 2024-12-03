@@ -1,0 +1,11 @@
+.toy-edit form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.toy-edit h2 {
+  text-align: center;
+}

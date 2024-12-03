@@ -1,0 +1,8 @@
+.home-page {
+  display: flex;
+  justify-content: center;
+}
+
+.home-page img {
+  max-height: 700px;
+}
