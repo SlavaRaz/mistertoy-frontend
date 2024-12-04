@@ -1,4 +1,4 @@
-import { toyService } from "../../services/toy.service.local.js"
+import { toyService } from "../../services/toy.service.js"
 
 
 //* Toys

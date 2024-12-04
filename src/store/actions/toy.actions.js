@@ -1,4 +1,4 @@
-import { toyService } from '../../services/toy.service.local.js'
+import { toyService } from '../../services/toy.service.js'
 import { showSuccessMsg } from '../../services/event-bus.service.js'
 import { store } from '../store.js'
 import { ADD_TOY, REMOVE_TOY, SET_TOYS, SET_FILTER_BY, SET_IS_LOADING, UPDATE_TOY } from '../reducers/toy.reducers.js'
