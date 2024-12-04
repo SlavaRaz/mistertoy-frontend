@@ -3,6 +3,17 @@ import { utilService } from './util.service.js'
 
 const STORAGE_KEY = 'toyDB'
 
+const labels = [
+    'On wheels',
+    'Box game',
+    'Art',
+    'Baby',
+    'Doll',
+    'Puzzle',
+    'Outdoor',
+    'Battery Powered',
+]
+
 _createToys()
 
 
@@ -12,7 +23,10 @@ export const toyService = {
     save,
     remove,
     getToy,
-    getDefaultFilter
+    getDefaultFilter,
+    getEmptyToy,
+    getToyLabels,
+
 }
 
 function query(filterBy = {}) {
@@ -44,6 +58,20 @@ function getToy() {
         inStock: utilService.getRandomInStock()
     }
 }
+
+function getEmptyToy() {
+    return {
+        name: '',
+        price: '',
+        labels: utilService.makeLabels()
+    }
+}
+
+function getToyLabels() {
+    return [...labels]
+}
+
+
 
 // function getRandomToy() {
 //     return {

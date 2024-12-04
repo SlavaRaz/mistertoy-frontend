@@ -50,7 +50,7 @@ export function toyReducer(state = initialState, action = {}) {
             }
 
         case SET_IS_LOADING:
-            return { ...state, isLoading: cmd.isLoading }
+            return { ...state, isLoading: action.isLoading }
 
         default:
             return state
