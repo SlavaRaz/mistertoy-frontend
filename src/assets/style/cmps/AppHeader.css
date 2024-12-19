@@ -1,14 +1,10 @@
 .app-header {
   background-color: var(--clr1);
   color: var(--clr1bg);
-  padding: 1em;
+  padding-block: 1em;
 }
 
-.app-header .logo {
-  font-family: libre, sans-serif;
-  font-size: 6rem;
-}
-
-.app-header nav {
-  margin-block-end: 1em;
+.app-nav {
+  display: flex;
+  gap: 15px;
 }

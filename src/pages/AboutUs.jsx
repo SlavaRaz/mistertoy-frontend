@@ -1,4 +1,4 @@
-// import { FilterTest } from "../cmps/FilterTest.jsx"
+import { GoogleMap } from "../cmps/GoogleMap";
 
 export function AboutUs() {
 
@@ -12,7 +12,7 @@ export function AboutUs() {
         numquam labore quae. Accusamus libero perferendis ducimus? Alias unde
         hic quisquam doloremque.
       </p>
-      {/* <FilterTest/> */}
+      <GoogleMap/>
     </section>
   )
 }

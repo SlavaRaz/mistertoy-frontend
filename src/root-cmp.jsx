@@ -3,11 +3,12 @@ import { AppFooter } from './cmps/AppFooter.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
 import { HomePage } from './pages/HomePage.jsx'
 
+import { UserMsg } from './cmps/UserMsg.jsx'
+import { store } from './store/store.js'
 import { ToyIndex } from './pages/ToyIndex.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { ToyDetails } from './pages/ToyDetails.jsx'
-import { store } from './store/store.js'
-import { UserMsg } from './cmps/UserMsg.jsx'
+import { ToyDashboard } from './pages/ToyDashBoard.jsx'
 
 
 import { Provider } from 'react-redux'
@@ -25,6 +26,7 @@ export function App() {
                         <Routes>
                             <Route element={<HomePage />} path="/" />
                             <Route element={<AboutUs />} path="/about" />
+                            <Route element={<ToyDashboard />} path={'/dashboard'} />
                             <Route element={<ToyIndex />} path="/toy" />
                             <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
                             <Route element={<ToyDetails />} path="/toy/:toyId" />

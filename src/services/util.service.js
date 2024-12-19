@@ -41,6 +41,7 @@ function makeLabels(size = 4) {
         txt = words[Math.floor(Math.random() * words.length)] + ''
         array.push(txt)
     }
+    console.log(array)
     return array
 }
 //*Optional to use random labels

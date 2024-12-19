@@ -1,5 +1,7 @@
-import { httpService } from './http.service'
-import { utilService } from './util.service'
+import { httpService } from './http.service.js'
+import { utilService } from './util.service.js'
+import { userService } from './user.service.js'
+
 
 const BASE_URL = 'toy/'
 const STORAGE_KEY = 'toyDB'
@@ -24,6 +26,8 @@ export const toyService = {
     getEmptyToy,
     getDefaultFilter,
     getToyLabels,
+    getPriceLabel,
+    getInventoryLabel,
 }
 
 function query(filterBy = {}) {
@@ -39,8 +43,12 @@ function remove(toyId) {
 }
 
 function save(toy) {
-    const method = toy._id ? 'put' : 'post'
-    return httpService[method](BASE_URL, toy)
+    if (toy._id) {
+        return httpService.put(BASE_URL + toy._id, toy)
+    } else {
+        toy.owner = userService.getLoggedinUser()
+        return httpService.post(BASE_URL, toy)
+    }
 }
 
 function getDefaultFilter() {
@@ -56,12 +64,13 @@ function getDefaultFilter() {
     }
 }
 
-
 function getEmptyToy() {
     return {
-        name: '',
-        price: '',
+        name: utilService.makeLorem(),
+        price: utilService.getRandomIntInclusive(),
         labels: utilService.makeLabels(),
+        createdAt: Date.now(),
+        inStock: utilService.getRandomInStock()
     }
 }
 
@@ -69,12 +78,42 @@ function getToyLabels() {
     return [...labels]
 }
 
-function _getRandomLabels() {
-    const labelsCopy = [...labels]
-    const randomLabels = []
-    for (let i = 0; i < 2; i++) {
-        const randomIdx = Math.floor(Math.random() * labelsCopy.length)
-        randomLabels.push(labelsCopy.splice(randomIdx, 1)[0])
-    }
-    return randomLabels
+function getPriceLabel(toys) {
+    const priceLabel = {}
+    toys.forEach(toy => {
+        toy.labels.forEach(label => {
+            if (!priceLabel[label]) priceLabel[label] = 0
+            priceLabel[label] += toy.price
+        })
+    })
+    return _getPricePerLabel(priceLabel)
+}
+
+function getInventoryLabel(toys) {
+    const labelMap = {}
+
+    toys.forEach(toy => {
+        toy.labels.forEach(label => {
+            if (!labelMap[label]) labelMap[label] = { inStock: 0, total: 0 }
+            labelMap[label].total++
+            if (toy.inStock) labelMap[label].inStock++
+        })
+    })
+    
+    return _getInventoryLabel(labelMap)
+}
+
+
+function _getPricePerLabel(priceLabel) {
+    return Object.keys(priceLabel).map(label => ({
+        label,
+        total: priceLabel[label]
+    }))
+}
+
+function _getInventoryLabel(labelMap) {
+    return Object.entries(labelMap).map(([label, { inStock, total }]) => ({
+        label,
+        inStockPercentage: ((inStock / total) * 100).toFixed(2),
+    }))
 }
