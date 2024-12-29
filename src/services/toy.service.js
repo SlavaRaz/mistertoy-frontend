@@ -28,6 +28,9 @@ export const toyService = {
     getToyLabels,
     getPriceLabel,
     getInventoryLabel,
+    saveToyMsg,
+    removeToyMsg,
+    getEmptyMsg,
 }
 
 function query(filterBy = {}) {
@@ -117,3 +120,40 @@ function _getInventoryLabel(labelMap) {
         inStockPercentage: ((inStock / total) * 100).toFixed(2),
     }))
 }
+
+async function saveToyMsg(toyId, msgToSave) {
+    try {
+        return await httpService.post(`toy/${toyId}/msg`, _createMsg(msgToSave))
+    } catch (err) {
+        console.error('Failed to save message', err)
+        throw err
+    }
+}
+
+async function removeToyMsg(toyId, msgId) {
+    try {
+        return await httpService.delete(`toy/${toyId}/msg/${msgId}`)
+    } catch (err) {
+        console.error('Failed to remove toy message', err)
+        throw err
+    }
+}
+
+function getEmptyMsg() {
+    return {
+        id: utilService.makeId(),
+        txt: '',
+        by: '',
+        createdAt: Date.now(),
+    }
+}
+
+function _createMsg(msgToSave) {
+    return {
+        id: utilService.makeId(),
+        txt: msgToSave.txt,
+        by: msgToSave.by,
+        createdAt: msgToSave.createdAt,
+    }
+}
+

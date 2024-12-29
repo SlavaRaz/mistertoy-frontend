@@ -6,6 +6,7 @@ export const SET_TOYS = 'SET_TOYS'
 export const REMOVE_TOY = 'REMOVE_TOY'
 export const ADD_TOY = 'ADD_TOY'
 export const UPDATE_TOY = 'UPDATE_TOY'
+export const ADD_MSG = 'ADD_MSG'
 
 //* Filter
 export const SET_FILTER_BY = 'SET_FILTER_BY'
@@ -51,6 +52,16 @@ export function toyReducer(state = initialState, action = {}) {
 
         case SET_IS_LOADING:
             return { ...state, isLoading: action.isLoading }
+
+        case ADD_MSG:
+            return {
+                ...state,
+                toys: state.toys.map(toy =>
+                    toy._id === action.toyId
+                        ? { ...toy, messages: [...toy.messages, action.msg] }
+                        : toy
+                ),
+            }
 
         default:
             return state

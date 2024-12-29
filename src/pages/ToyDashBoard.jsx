@@ -17,11 +17,16 @@ export function ToyDashboard() {
 
     console.log(pricePerLabelData)
     useEffect(() => {
-        loadToys()
-            .catch(() => {
+        (async () => {
+            try {
+                if (!toys.length) {
+                    await loadToys()
+                }
+            } catch (err) {
                 showErrorMsg('Cannot load toys')
-            })
-    }, [])
+            }
+        })()
+    }, []) 
 
     useEffect(() => {
         const priceData = toyService.getPriceLabel(toys)

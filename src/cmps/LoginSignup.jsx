@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { login, signup } from '../store/actions/user.actions.js'
@@ -8,23 +9,31 @@ import { LoginForm } from './LoginForm.jsx'
 
 export function LoginSignup() {
 
+    const navigate = useNavigate()
     const [isSignup, setIsSignUp] = useState(false)
 
     function onLogin(credentials) {
         isSignup ? _signup(credentials) : _login(credentials)
     }
 
-    function _login(credentials) {
-        login(credentials)
-            .then(() => { showSuccessMsg('Logged in successfully') })
-            .catch((err) => { showErrorMsg('Oops try again') })
+    async function _login(credentials) {
+        try {
+            await login(credentials)
+            navigate('/')
+            showSuccessMsg('Logged in successfully')
+        } catch (err) {
+            showErrorMsg('Oops try again')
+        }
     }
 
-    function _signup(credentials) {
-        signup(credentials)
-        console.log(credentials)
-            .then(() => { showSuccessMsg('Signed in successfully') })
-            .catch((err) => { showErrorMsg('Oops try again') })
+    async function _signup(credentials) {
+        try {
+            await signup(credentials)
+            navigate('/')
+            showSuccessMsg('Signed up successfully')
+        } catch (err) {
+            showErrorMsg('Oops try again')
+        }
     }
 
     return (
